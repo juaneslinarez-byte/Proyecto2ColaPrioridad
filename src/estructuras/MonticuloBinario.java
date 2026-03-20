@@ -167,4 +167,24 @@ public class MonticuloBinario {
         }
         return heap[0];
     }
+    
+    /**
+     * Cambia la prioridad de un elemento en el heap
+     * eliminar elementos especificos (no solo el minimo)
+     * @param etiquetaVieja etiqueta actual a buscar
+     * @param etiquetaNueva nueva etiqueta a asignar
+     * @return true si se encontro y cambio, false si no
+     */
+    public boolean cambiarPrioridad(long etiquetaVieja, long etiquetaNueva) {
+        // Buscar el elemento en el array
+        for (int i = 0; i < tamaño; i++) {
+            if (heap[i].getEtiquetaTiempo() == etiquetaVieja) {
+                heap[i].setEtiquetaTiempo(etiquetaNueva);
+                // Filtrar arriba porque ahora tiene menor prioridad
+                filtrarArriba(i);
+                return true;
+            }
+        }
+        return false;
+    }
 }
