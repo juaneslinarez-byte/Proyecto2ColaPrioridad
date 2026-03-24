@@ -15,6 +15,7 @@ public class VentanaPrincipal extends JFrame {
     
     // Paneles de la aplicacion
     private PanelUsuarios panelUsuarios;
+    private PanelDocumentos panelDocumentos;
     
     /**
      * Constructor de la ventana principal
@@ -46,10 +47,12 @@ public class VentanaPrincipal extends JFrame {
         
         // Inicializar paneles
         panelUsuarios = new PanelUsuarios(gestor);
+        panelDocumentos = new PanelDocumentos(gestor);
         
         // Agregar paneles al CardLayout
         panelContenido.add(crearPanelInicio(), "inicio");
         panelContenido.add(panelUsuarios, "usuarios");
+        panelContenido.add(panelDocumentos, "documentos");
         
         add(panelContenido, BorderLayout.CENTER);
         
@@ -78,8 +81,16 @@ public class VentanaPrincipal extends JFrame {
             cardLayout.show(panelContenido, "usuarios");
         });
         
+        // Boton de documentos
+        JButton btnDocumentos = crearBotonMenu("Documentos");
+        btnDocumentos.addActionListener(e -> {
+            panelDocumentos.actualizarPanel();
+            cardLayout.show(panelContenido, "documentos");
+        });
+        
         panel.add(btnInicio);
         panel.add(btnUsuarios);
+        panel.add(btnDocumentos);
         
         return panel;
     }
