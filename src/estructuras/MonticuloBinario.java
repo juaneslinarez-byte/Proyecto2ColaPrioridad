@@ -187,4 +187,16 @@ public class MonticuloBinario {
         }
         return false;
     }
+    
+    /**
+     * Obtiene todos los elementos del heap en un array
+     * @return array con copia de los elementos actuales
+     */
+    public RegistroCola[] obtenerTodosElementos() {
+        RegistroCola[] elementos = new RegistroCola[tamaño];
+        for (int i = 0; i < tamaño; i++) {
+            elementos[i] = heap[i];
+        }
+        return elementos;
+    }
 }

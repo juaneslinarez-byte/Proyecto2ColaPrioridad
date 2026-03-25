@@ -1,10 +1,12 @@
-# NetBeans
-nbproject/private/
+# NetBeans build outputs
 build/
-nbbuild/
 dist/
+nbbuild/
 nbdist/
 .nb-gradle/
+
+# NetBeans private configuration
+nbproject/private/
 
 # Compiled class files
 *.class
@@ -12,21 +14,19 @@ nbdist/
 # Log files
 *.log
 
-# Package Files
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
+# Package Files (JARs generados, no los de lib/)
+# dist/*.jar
 
-# OS Files
+# IDEs
+.idea/
+*.iml
+.vscode/
+
+# OS
 .DS_Store
 Thumbs.db
 
-# IDE
+# Temporary files
+*.tmp
 *.swp
-*.swo
 *~
-.idea/

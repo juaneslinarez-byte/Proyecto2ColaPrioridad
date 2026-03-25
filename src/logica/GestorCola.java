@@ -337,4 +337,12 @@ public class GestorCola {
         br.close();
         return contador;
     }
+    
+    /**
+     * Obtiene los elementos actuales de la cola ordenados por prioridad
+     * @return array con los registros de la cola
+     */
+    public RegistroCola[] obtenerElementosCola() {
+        return heap.obtenerTodosElementos();
+    }
 }

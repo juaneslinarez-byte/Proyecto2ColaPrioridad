@@ -16,12 +16,17 @@ public class VentanaPrincipal extends JFrame {
     // Paneles de la aplicacion
     private PanelUsuarios panelUsuarios;
     private PanelDocumentos panelDocumentos;
+    private PanelColaSecuencial panelColaSecuencial;
+    private PanelArbolHeap panelArbolHeap;
     
     /**
      * Constructor de la ventana principal
      */
     public VentanaPrincipal() {
         this.gestor = new GestorCola();
+        
+        // Iniciar el reloj automaticamente
+        gestor.getReloj().iniciar();
         
         // Configuracion basica de la ventana
         setTitle("Sistema de Cola de Impresion");
@@ -48,11 +53,15 @@ public class VentanaPrincipal extends JFrame {
         // Inicializar paneles
         panelUsuarios = new PanelUsuarios(gestor);
         panelDocumentos = new PanelDocumentos(gestor);
+        panelColaSecuencial = new PanelColaSecuencial(gestor);
+        panelArbolHeap = new PanelArbolHeap(gestor);
         
         // Agregar paneles al CardLayout
         panelContenido.add(crearPanelInicio(), "inicio");
         panelContenido.add(panelUsuarios, "usuarios");
         panelContenido.add(panelDocumentos, "documentos");
+        panelContenido.add(panelColaSecuencial, "colaSecuencial");
+        panelContenido.add(panelArbolHeap, "arbolHeap");
         
         add(panelContenido, BorderLayout.CENTER);
         
@@ -88,9 +97,25 @@ public class VentanaPrincipal extends JFrame {
             cardLayout.show(panelContenido, "documentos");
         });
         
+        // Boton de cola secuencial
+        JButton btnColaSecuencial = crearBotonMenu("Cola");
+        btnColaSecuencial.addActionListener(e -> {
+            panelColaSecuencial.actualizarTabla();
+            cardLayout.show(panelContenido, "colaSecuencial");
+        });
+        
+        // Boton de arbol heap
+        JButton btnArbolHeap = crearBotonMenu("Arbol");
+        btnArbolHeap.addActionListener(e -> {
+            panelArbolHeap.actualizarArbol();
+            cardLayout.show(panelContenido, "arbolHeap");
+        });
+        
         panel.add(btnInicio);
         panel.add(btnUsuarios);
         panel.add(btnDocumentos);
+        panel.add(btnColaSecuencial);
+        panel.add(btnArbolHeap);
         
         return panel;
     }
